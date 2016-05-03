@@ -12,23 +12,86 @@ var player2_wins = 0;
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
+
+    $(this) = self;
+
     if(play_count % 2 == 1){
        // var x = 'x';
-        $('<img>').hasClass('.x').show();
+        self.find('.x').show();
       //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
       //  $(x).appendTo('<div>');
-        play_count++;
-        check_win();
+
+
+        /////creating object of player's move
+        var column = null
+        var row = null;
+        if (self.hasClass('column_0')) {
+            column = 0;
+        }
+        else if (self.hasClass('column_1')) {
+            column = 1;
+        }
+        else if (self.hasClass('column_2')) {
+            column = 2;
+        }
+
+        if (self.hasClass('row_0')) {
+            row = 0;
+        }
+        else if (self.hasClass('row_1')) {
+            row = 1;
+        }
+        else if (self.hasClass('row_2')) {
+            row = 2;
+        }
+
+        var player_move = {
+            column: column;
+            row: row;
+            value: 'player1';
+        }
+        check_win(player_move);
         check_draw();
+        play_count++;
     }
     else{
        // var o = 'o';
-        $('<img>').hasClass('.o').show();
+        self.find('.o').show();
        // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
       //  $(o).appendTo('<div>');
-        play_count++;
-        check_win();
+
+        /////creating object of player's move
+        var column = null
+        var row = null;
+        if (self.hasClass('column_0')) {
+            column = 0;
+        }
+        else if (self.hasClass('column_1')) {
+            column = 1;
+        }
+        else if (self.hasClass('column_2')) {
+            column = 2;
+        }
+
+        if (self.hasClass('row_0')) {
+            row = 0;
+        }
+        else if (self.hasClass('row_1')) {
+            row = 1;
+        }
+        else if (self.hasClass('row_2')) {
+            row = 2;
+        }
+
+        var player_move = {
+            column: column;
+            row: row;
+            value: 'player1';
+        }
+
+        check_win(player_move);
         check_draw();
+        play_count++;
     }
 }
 
@@ -371,7 +434,7 @@ function display() {
 
 $(document).ready(function(){
     $('.image-responsive').hide();
-    $('').click(function(){
+    $('.cells').click(function(){
        make_move();
     });
 
