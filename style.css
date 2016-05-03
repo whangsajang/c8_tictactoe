@@ -4,13 +4,16 @@
 }
 
 .game-container {
-    margin-top: 10vh;
+    margin-top: 12vh;
     height: 80vh;
-
-
+}
+.stat-container {
+    height: 50vh;
+    border: black 3px solid;
 }
 
 .cells {
     border: solid 3px black;
     height: 30vh;
+    background-color: yellow;
 }
