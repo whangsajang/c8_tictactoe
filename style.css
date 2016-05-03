@@ -4,12 +4,13 @@
 }
 
 .game-container {
-    height: 50vh;
-    background-color: blue;
-    border: solid 1 px black;
+    margin-top: 10vh;
+    height: 80vh;
+
+
 }
 
 .cells {
-    border: solid 1px black;
-    height: 25vh;
+    border: solid 3px black;
+    height: 30vh;
 }
