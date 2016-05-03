@@ -13,6 +13,11 @@ function make_move() {
 
 function check_win(object) {
     //loop through array to compare wins
+    
+    var temp_check_array = [];
+    temp_check_array.push(object);
+    
+    for (i = 0; i < )
 }
 
 function check_draw() {
