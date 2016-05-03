@@ -30,8 +30,13 @@ function game_board() {
 
 function reset() {
     //clear all the objects in arrays, clear gameboard
+ 
 }
+
 
 function display() {
     //shows stats, and highlights which player's turn it is
 }
+
+    
+   
