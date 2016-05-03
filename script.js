@@ -315,6 +315,8 @@ function check_draw() {
 
 function game_board() {
     //dynamically creates board according to cell_count
+    
+    
 }
 
 function reset() {
