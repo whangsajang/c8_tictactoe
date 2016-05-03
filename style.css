@@ -44,6 +44,7 @@
 }
 .img-responsive {
     position: absolute;
-    width: 85%;
-    margin: 1.8vh 1.5vh 1vh 0;
+    height: 75%;
+    width: 75%;
+    margin: 3vh;
 }
