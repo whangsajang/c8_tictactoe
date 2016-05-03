@@ -16,8 +16,53 @@ function check_win(object) {
     
     var temp_check_array = [];
     temp_check_array.push(object);
+
     
-    for (i = 0; i < )
+    if (object.value == 'player1') {
+        for (i = 0; i < player1_array.length; i++) { //fill check array with all x's in that column
+            //check columns
+            var current_object = player1_array[i];
+            if (current_object.column == object.column) {
+                temp_check_array.push(current_object);
+            }
+        }
+
+        if (temp_check_array >= cell_win_count) {       //checking if the x's are consecutive in that column
+
+            array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
+                if (a.column > b.column) {
+                    return 1;
+                }
+                else if (a.column < b.column) {
+                    return -1;
+                }
+                else {
+                    return 0;
+                }
+            });
+
+            for (i = 1; i < temp_check_array.length; i++) {
+
+                var first_check_object = temp_check_array[0];
+                var current_check_object = temp_check_array[0];
+
+
+                for (j = 1; j <= cell_win_count; j++) {
+                    if (temp_check_array[i].column == first_check_object.column + j) {
+                        current_check_object = temp_check_array[i];
+
+                        if (current_check_object == first_check_object + cell_win_count) {
+                            display('Player 1 Wins!');
+                        }
+                    }
+                    else {
+
+                    }
+                }
+
+            }
+        }
+    }
 }
 
 function check_draw() {
@@ -38,5 +83,8 @@ function display() {
     //shows stats, and highlights which player's turn it is
 }
 
+$(document).ready(function() {
+    $('.cells').click(make_move);
+});
     
    
