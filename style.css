@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+<<<<<<< HEAD
 }
 
 .game-container {
@@ -10,4 +11,52 @@
 
 .cells {
     border: solid 1px black;
+=======
+    font-family: "Courier New";
+    text-align: center;
+}
+.title {
+    font-size: 8vh;
+    font-weight: bold;
+}
+.game-container {
+    margin-top: 3vh;
+    height: 80vh;
+}
+.stat-container {
+    height: 50vh;
+    margin-top: 30vh;
+    border: black 3px solid;
+    background-color:rgba(255, 255, 0, 0.5);
+    box-shadow: 10px 10px 10px grey;
+}
+.cells {
+    border: solid 3px black;
+    height: 25vh;
+    background-color:rgba(255, 255, 0, 0.5);
+    box-shadow: 10px 10px 10px grey;
+}
+.stat-text {
+    margin-top: 0.8vh;
+    font-size: 3vh;
+    font-weight: bold;
+}
+.player {
+    text-decoration: underline;
+    font-size: 3vh;
+    padding: 1.5vh;
+}
+.reset {
+    margin-top: 5vh;
+    background-color: darkred;
+    color: white;
+    padding: 0.5vh;
+    font-size: 3vh;
+}
+.img-responsive {
+    position: absolute;
+    height: 75%;
+    width: 75%;
+    margin: 3vh;
+>>>>>>> ca018f252177d528c93aa23d3050385a2d23f930
 }
