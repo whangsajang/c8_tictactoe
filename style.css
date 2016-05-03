@@ -5,9 +5,11 @@
 
 .game-container {
     height: 50vh;
+    background-color: blue;
     border: solid 1 px black;
 }
 
 .cells {
     border: solid 1px black;
+    height: 25vh;
 }
