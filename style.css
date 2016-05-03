@@ -36,9 +36,14 @@
     padding: 1.5vh;
 }
 .reset {
-    margin-top: 8vh;
+    margin-top: 5vh;
     background-color: darkred;
     color: white;
-    padding: 1vh;
+    padding: 0.5vh;
     font-size: 3vh;
+}
+.img-responsive {
+    position: absolute;
+    width: 85%;
+    margin: 1.8vh 1.5vh 1vh 0;
 }
