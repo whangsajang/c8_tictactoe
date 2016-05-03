@@ -1,19 +1,37 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: Arial Narrow;
+    text-align: center;
 }
-
+.title {
+    font-size: 250%;
+}
 .game-container {
-    margin-top: 12vh;
+    margin-top: 8vh;
     height: 80vh;
 }
 .stat-container {
     height: 50vh;
+    margin-top: 30vh;
     border: black 3px solid;
+    box-shadow: 3px 3px 3px 3px grey;
 }
-
 .cells {
     border: solid 3px black;
-    height: 30vh;
-    background-color: yellow;
+    height: 25vh;
+    background-color: lavender;
+}
+.stat-text {
+    padding: 1em;
+    margin-top: 0.8vh;
+    font-size: 150%;
+    font-weight: bold;
+}
+.reset {
+    margin-top: 5vh;
+    background-color: darkred;
+    color: white;
+    padding: 0.5em;
+    font-size: 200%;
 }
