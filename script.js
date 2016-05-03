@@ -9,6 +9,7 @@ var cell_win_count = 3;
 var win = false;
 var player1_wins = 0;
 var player2_wins = 0;
+var reset_timer = null;
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
@@ -392,14 +393,21 @@ function check_win(object) {
 }
 
 function check_draw() {
-    //see if gameboard is full and no win is present
+    function check_draw() {
+        if (play_count == cell_count * cell_count) {
+            alert('Cat\'s Game!');
+            reset_timer = setTimeout(function () {
+                reset();
+            }, 5000);
+        }
+    }
 }
 
-function game_board() {
-    //dynamically creates board according to cell_count
-    
-    
-}
+// function game_board() {
+//     //dynamically creates board according to cell_count
+//     $(".game-container").append("<div></div>");
+//
+// }
 
 function reset() {
     //clear all the objects in arrays, clear gameboard
@@ -437,5 +445,5 @@ $(document).ready(function(){
 
     $('.reset').click(function(){
         reset();
-    })
-})
+    });
+});

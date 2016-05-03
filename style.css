@@ -8,6 +8,14 @@
     font-size: 8vh;
     font-weight: bold;
 }
+.start-game-modal {
+    top: 25vh;
+}
+.start-game-button {
+    padding: 4vh 10vh;
+    font-weight: bold;
+    font-size: 5vh;
+}
 .game-container {
     margin-top: 3vh;
     height: 80vh;
