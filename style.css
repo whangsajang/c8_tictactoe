@@ -1,17 +1,6 @@
 * {
     padding: 0;
     margin: 0;
-<<<<<<< HEAD
-}
-
-.game-container {
-    height: 50vh;
-    border: solid 1 px black;
-}
-
-.cells {
-    border: solid 1px black;
-=======
     font-family: "Courier New";
     text-align: center;
 }
@@ -58,5 +47,4 @@
     height: 75%;
     width: 75%;
     margin: 3vh;
->>>>>>> ca018f252177d528c93aa23d3050385a2d23f930
 }
