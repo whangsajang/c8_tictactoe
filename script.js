@@ -9,6 +9,20 @@ var cell_win_count = 3;
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
+    if(play_count == 1 || play_count%2 == 1){
+        var x = 'x';
+        $(this).addClass(); //addclass
+        player_count++;
+        check_win();
+        check_draw();
+    }
+    else{
+        var o = 'o';
+        $(this).addClass(); //addClass
+        player_count++;
+        check_win();
+        check_draw();
+    }
 }
 
 function check_win(object) {
@@ -25,13 +39,31 @@ function game_board() {
 
 function reset() {
     //clear all the objects in arrays, clear gameboard
- 
+    function reset() {
+        player_1 = [];
+        player_2 = [];
+        play_count = 1;
+        cell_count = 3;
+        $('.').removeClass(); // remove or toggle class??
+
+    }
+
 }
-
-
 function display() {
     //shows stats, and highlights which player's turn it is
+    var wins;
+
+
 }
 
-    
-   
+$(document).ready(function(){
+    $('').click(function(){
+       make_move();
+    });
+
+    $('.reset').click(function(){
+        reset();
+    })
+
+
+})
