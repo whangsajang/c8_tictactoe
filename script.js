@@ -6,20 +6,26 @@ var player2_array = [];
 var play_count = 1;
 var cell_count = 3;
 var cell_win_count = 3;
+var click = false;
+var player1_wins = 0;
+var player2_wins = 0;
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
     if(play_count == 1 || play_count%2 == 1){
-        var x = 'x';
-        $(this).addClass(); //addclass
-        player_count++;
+       // var x = 'x';
+        var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
+        $(x).appendTo('<div>');
+        play_count++;
         check_win();
         check_draw();
     }
     else{
-        var o = 'o';
-        $(this).addClass(); //addClass
-        player_count++;
+       // var o = 'o';
+        var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
+        $(o).appendTo('<div>');
+        play_count++;
+       
         check_win();
         check_draw();
     }
@@ -44,6 +50,8 @@ function reset() {
         player_2 = [];
         play_count = 1;
         cell_count = 3;
+        player1_wins = 0;
+        player2_wins = 0;
         $('.').removeClass(); // remove or toggle class??
 
     }
@@ -51,7 +59,16 @@ function reset() {
 }
 function display() {
     //shows stats, and highlights which player's turn it is
-    var wins;
+    If(win)
+    { //player 1 wins needs from check win
+        wins1++;
+        $('.').text(' ' + player1_wins);
+    }
+    else{
+        wins2++;
+        $('.').text(' ' + player2_wins);
+    }
+
 
 
 }
@@ -67,3 +84,4 @@ $(document).ready(function(){
 
 
 })
+
