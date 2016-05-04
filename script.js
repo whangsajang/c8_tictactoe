@@ -80,6 +80,10 @@ function make_move() {
     }
 }
 
+function set_timer() {
+
+}
+
 function check_win(object) {
     //loop through array to compare win
     if (object.value == 'player1') {
@@ -240,10 +244,10 @@ function check_win(object) {
         if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
             temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
-                if (a.column > b.column) {
+                if (a.row > b.row) {
                     return 1;
                 }
-                else if (a.column < b.column) {
+                else if (a.row < b.row) {
                     return -1;
                 }
                 else {
@@ -286,10 +290,10 @@ function check_win(object) {
             if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
                 temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
-                    if (a.column > b.row) {
+                    if (a.column > b.column) {
                         return 1;
                     }
-                    else if (a.row < b.row) {
+                    else if (a.column < b.column) {
                         return -1;
                     }
                     else {
@@ -428,6 +432,7 @@ function game_board() {
             var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
             new_div.append(image_x, image_o);
             $('.game-area').append(new_div);
+            // store(new_div, i);
         }
     }
     $('.x').hide();
@@ -463,6 +468,11 @@ function display(player) {
         $('.o-wins').fadeIn('slow');
     }
 }
+
+// function store(object, number) {
+//     var key_name = object + number;
+//     localStorage.setItem(object)
+// }
 
 $(document).ready(function(){
     create_modal_options();
