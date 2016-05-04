@@ -377,6 +377,9 @@ function game_board() {
     if ($("input[name='optradio']:checked").val()) {
         cell_count = parseInt($("input[name='optradio']:checked").val());
     }
+    else {
+        cell_count = parseInt($('#sel1 option:selected').val());
+    }
 
 
     for (i=0; i<cell_count; i++) { //row count
@@ -412,7 +415,6 @@ function reset() {
     player1_array = [];
     player2_array = [];
     play_count = 1;
-    cell_count = 3;
     player1_wins = 0;
     player2_wins = 0;
     $('.x').hide(); // remove or toggle class??
