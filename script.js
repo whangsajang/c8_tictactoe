@@ -13,94 +13,75 @@ var reset_timer = null;
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
-
     self = $(this);
-    console.log(self);
 
-    if(play_count % 2 == 1){
-       // var x = 'x';
-        self.find('.x').show();
-      //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
-      //  $(x).appendTo('<div>');
+    if (self.find('.x').css('display') == 'none' && self.find('.o').css('display') == 'none') {
+        if (play_count % 2 == 1) {
+            // var x = 'x';
+            self.find('.x').show();
+            //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
+            //  $(x).appendTo('<div>');
 
+            /////creating object of player's move
+            var column = null
+            var row = null;
+            for (i = 0; i < cell_count; i++) {
+                var current_column = "column_" + i;
+                var current_row = "row_" + i;
+                if (self.hasClass(current_column)) {
+                    column = i;
+                }
+                if (self.hasClass(current_row)) {
+                    row = i;
+                }
+            }
 
-        /////creating object of player's move
-        var column = null
-        var row = null;
-        if (self.hasClass('column_0')) {
-            column = 0;
+            var player_move = {
+                column: column,
+                row: row,
+                value: 'player1'
+            }
+            player1_array.push(player_move);
+            check_win(player_move);
+            check_draw();
+            play_count++;
         }
-        else if (self.hasClass('column_1')) {
-            column = 1;
-        }
-        else if (self.hasClass('column_2')) {
-            column = 2;
-        }
+        else {
 
-        if (self.hasClass('row_0')) {
-            row = 0;
-        }
-        else if (self.hasClass('row_1')) {
-            row = 1;
-        }
-        else if (self.hasClass('row_2')) {
-            row = 2;
-        }
+            // var o = 'o';
+            self.find('.o').show();
+            // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
+            //  $(o).appendTo('<div>');
+            /////creating object of player's move
+            var column = null
+            var row = null;
+            for (i = 0; i < cell_count; i++) {
+                var current_column = "column_" + i;
+                var current_row = "row_" + i;
+                if (self.hasClass(current_column)) {
+                    column = i;
+                }
+                if (self.hasClass(current_row)) {
+                    row = i;
+                }
+            }
 
-        var player_move = {
-            column: column,
-            row: row,
-            value: 'player1'
+            var player_move = {
+                column: column,
+                row: row,
+                value: 'player2'
+            }
+            player2_array.push(player_move);
+            check_win(player_move);
+            check_draw();
+            play_count++;
         }
-        player1_array.push(player_move);
-        check_win(player_move);
-        check_draw();
-        play_count++;
-    }
-    else{
-       // var o = 'o';
-        self.find('.o').show();
-       // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
-      //  $(o).appendTo('<div>');
-
-        /////creating object of player's move
-        var column = null
-        var row = null;
-        if (self.hasClass('column_0')) {
-            column = 0;
-        }
-        else if (self.hasClass('column_1')) {
-            column = 1;
-        }
-        else if (self.hasClass('column_2')) {
-            column = 2;
-        }
-
-        if (self.hasClass('row_0')) {
-            row = 0;
-        }
-        else if (self.hasClass('row_1')) {
-            row = 1;
-        }
-        else if (self.hasClass('row_2')) {
-            row = 2;
-        }
-
-        var player_move = {
-            column: column,
-            row: row,
-            value: 'player1'
-        }
-        player2_array.push(player_move);
-        check_win(player_move);
-        check_draw();
-        play_count++;
+    $('.player').toggleClass('player-turn')
     }
 }
 
 function check_win(object) {
     //loop through array to compare win
-    
     if (object.value == 'player1') {
         var temp_check_array = [];
 
@@ -111,14 +92,13 @@ function check_win(object) {
                 temp_check_array.push(current_object);
             }
         }
-
-        if (temp_check_array >= cell_win_count) {       //checking if the x's are consecutive in that column
+        if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
             temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
-                if (a.column > b.column) {
+                if (a.row > b.row) {
                     return 1;
                 }
-                else if (a.column < b.column) {
+                else if (a.row < b.row) {
                     return -1;
                 }
                 else {
@@ -130,25 +110,25 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
+                var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
+                if (next_object.row == current_check_object.row + 1) {
+                    current_check_object = temp_check_array[i];
 
-                for (j = 1; j <= cell_win_count; j++) {
-                    if (temp_check_array[i].column == first_check_object.column + j) {
-                        current_check_object = temp_check_array[i];
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
+                        win = true;
+                        //display('Player 1 Wins!');
+                        player1_wins++;
 
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                            win = true;
-                        }
+                        display('player1');
+
                     }
-                    else {
-                        first_check_object = temp_check_array[i];
-                        break;
-                    }
+                }
+                else {
+                    first_check_object = temp_check_array[i];
                 }
 
             }
         }
-        
         //check row win
         if (!win) {
 
@@ -164,10 +144,10 @@ function check_win(object) {
             if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
                 temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
-                    if (a.column > b.row) {
+                    if (a.column > b.column) {
                         return 1;
                     }
-                    else if (a.row < b.row) {
+                    else if (a.column < b.column) {
                         return -1;
                     }
                     else {
@@ -179,20 +159,19 @@ function check_win(object) {
                 var current_check_object = temp_check_array[0];
 
                 for (i = 1; i < temp_check_array.length; i++) {
+                    var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
+                    if (next_object.column == current_check_object.column + 1) {
+                        current_check_object = temp_check_array[i];
 
-                    for (j = 1; j <= cell_win_count; j++) {
-                        if (temp_check_array[i].row == first_check_object.row + j) {
-                            current_check_object = temp_check_array[i];
+                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
+                            win = true;
+                            player1_wins++;
+                            display('player1');
 
-                            if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                                display('Player 1 Wins!');
-                                win = true;
-                            }
                         }
-                        else {
-                            first_check_object = temp_check_array[i];
-                            break;
-                        }
+                    }
+                    else {
+                        first_check_object = temp_check_array[i];
                     }
 
                 }
@@ -201,7 +180,7 @@ function check_win(object) {
 
         //check diagonals
         if (!win) {
-            temp_check_array = player1_array.splice();
+            temp_check_array = player1_array;
 
             temp_check_array.sort(function compare(a, b) { //sorting player 1 array from least number to greatest number of column
                 if (a.column > b.column) {
@@ -219,26 +198,24 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
+                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
-                for (j = 1; j <= cell_win_count; j++) {
-                    if (temp_check_array[i].row == first_check_object.row + j && temp_check_array[i].column == first_check_object.column + j) {
-                        current_check_object = temp_check_array[i];
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        player1_wins++;
+                        display('player1');
+                    }
+                }
+                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        player1_wins++;
+                        display('player1');
                     }
-                    else if (temp_check_array[i].row == first_check_object.row - j && temp_check_array[i].column == first_check_object.column - j) {
-                        current_check_object = temp_check_array[i];
-
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else {
-                        first_check_object = temp_check_array[i];
-                        break;
-                    }
+                }
+                else {
+                    first_check_object = temp_check_array[i];
                 }
 
             }
@@ -257,8 +234,7 @@ function check_win(object) {
                 temp_check_array.push(current_object);
             }
         }
-
-        if (temp_check_array >= cell_win_count) {       //checking if the x's are consecutive in that column
+        if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
             temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
                 if (a.column > b.column) {
@@ -276,20 +252,18 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
+                var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
+                if (next_object.row == current_check_object.row + 1) {
+                    current_check_object = temp_check_array[i];
 
-                for (j = 1; j <= cell_win_count; j++) {
-                    if (temp_check_array[i].column == first_check_object.column + j) {
-                        current_check_object = temp_check_array[i];
-
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                            win = true;
-                        }
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
+                        win = true;
+                        player2_wins++;
+                        display('player2');
                     }
-                    else {
-                        first_check_object = temp_check_array[i];
-                        break;
-                    }
+                }
+                else {
+                    first_check_object = temp_check_array[i];
                 }
 
             }
@@ -306,8 +280,7 @@ function check_win(object) {
                     temp_check_array.push(current_object);
                 }
             }
-
-            if (temp_check_array >= cell_win_count) {       //checking if the x's are consecutive in that column
+            if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
                 temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
                     if (a.column > b.row) {
@@ -325,19 +298,18 @@ function check_win(object) {
                 var current_check_object = temp_check_array[0];
 
                 for (i = 1; i < temp_check_array.length; i++) {
+                    var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
+                    if (next_object.column == current_check_object.column + 1) {
+                        current_check_object = temp_check_array[i];
 
-                    for (j = 1; j <= cell_win_count; j++) {
-                        if (temp_check_array[i].row == first_check_object.row + j) {
-                            current_check_object = temp_check_array[i];
-
-                            if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                                display('Player 1 Wins!');
-                            }
+                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
+                            win = true;
+                            player2_wins++;
+                            display('player2');
                         }
-                        else {
-                            first_check_object = temp_check_array[i];
-                            break;
-                        }
+                    }
+                    else {
+                        first_check_object = temp_check_array[i];
                     }
 
                 }
@@ -346,7 +318,7 @@ function check_win(object) {
 
         //check diagonals
         if (!win) {
-            temp_check_array = player2_array.splice();
+            temp_check_array = player2_array;
 
             temp_check_array.sort(function compare(a, b) { //sorting player 2 array from least number to greatest number of column
                 if (a.column > b.column) {
@@ -364,28 +336,25 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
+                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
-                for (j = 1; j <= cell_win_count; j++) {
-                    if (temp_check_array[i].row == first_check_object.row + j && temp_check_array[i].column == first_check_object.column + j) {
-                        current_check_object = temp_check_array[i];
-
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else if (temp_check_array[i].row == first_check_object.row - j && temp_check_array[i].column == first_check_object.column - j) {
-                        current_check_object = temp_check_array[i];
-
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else {
-                        first_check_object = temp_check_array[i];
-                        break;
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        player2_wins++;
+                        display('player2');
                     }
                 }
+                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        player2_wins++;
+                        display('player2');
+                    }
+                }
+                else {
+                    first_check_object = temp_check_array[i];
+                }
             }
         }
 
@@ -393,14 +362,9 @@ function check_win(object) {
 }
 
 function check_draw() {
-    function check_draw() {
         if (play_count == cell_count * cell_count) {
-            alert('Cat\'s Game!');
-            reset_timer = setTimeout(function () {
-                reset();
-            }, 5000);
+            $('.cats-game').fadeIn('slow');
         }
-    }
 }
 
 function game_board() {
@@ -408,16 +372,15 @@ function game_board() {
     $('.start-game-button').hide();
     if ($("input[name='optradio']:checked").val()) {
         cell_count = parseInt($("input[name='optradio']:checked").val());
-        }
-
+    }
 
     for (i=0; i<cell_count; i++) { //row count
         for (j=0; j<cell_count; j++) { //column count
             var column_class = "column_"+j;
             var row_class = "row_"+i;
             var gamebox_size = (100/cell_count) + '%';
-          //  var image_x = $('<img>').addClass('x').attr('src', 'images/x.png');
-           // var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
+            //  var image_x = $('<img>').addClass('x').attr('src', 'images/x.png');
+            // var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
             var new_div = $('<div>', {
                 class : ("cells "+ column_class + " " + row_class),
                 width: gamebox_size,
@@ -436,42 +399,40 @@ function game_board() {
     $('.reset').click(function(){
         reset();
     });
-
 }
+
 function reset() {
     //clear all the objects in arrays, clear gameboard
-    function reset() {
-        player_1 = [];
-        player_2 = [];
-        play_count = 1;
-        cell_count = 3;
-        player1_wins = 0;
-        player2_wins = 0;
-        $('.x, .o').hide(); // remove or toggle class??
-
-    }
-
+    player1_array = [];
+    player2_array = [];
+    play_count = 1;
+    cell_count = 3;
+    $('.x').fadeOut('slow'); // remove or toggle class??
+    $('.o').fadeOut('slow');
+    $('.x-wins').fadeOut('slow');
+    $('.o-wins').fadeOut('slow');
+    $('.cats-game').fadeOut('slow');
+    win = false;
 }
-// function display() {
-//     //shows stats, and highlights which player's turn it is
-//     if(win)
-//     { //player 1 wins needs from check win
-//         wins1++;
-//         $('.x').text(' ' + player1_wins);
-//     }
-//     else{
-//         wins2++;
-//         $('.o').text(' ' + player2_wins);
-//     }
-//
-//
-//
-// }
+
+function display(player) {
+    //shows stats, and highlights which player's turn it is
+    
+    if(player == 'player1') {
+        $('.x-wins').fadeIn('slow');
+        $('.p1-score .value').text(player1_wins);
+    }
+    else if(player == 'player2') {
+        $('.o-wins').fadeIn('slow');
+        $('.p2-score .value').text(player2_wins);
+    }
+}
 
 $(document).ready(function(){
-    
-
     $('.close-modal').click(function(){
         game_board();
     });
+    $('.x-wins').hide();
+    $('.o-wins').hide();
+    $('.cats-game').hide();
 });
