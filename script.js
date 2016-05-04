@@ -195,18 +195,22 @@ function check_win(object) {
 
             var first_check_object = temp_check_array[0];
             var current_check_object = temp_check_array[0];
+            var current_check_counter = 0;
+            var current_check_counter2 = 0;
 
             for (i = 1; i < temp_check_array.length; i++) {
-                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1 && current_check_counter2 == 0) {
                     current_check_object = temp_check_array[i];
+                    current_check_counter++;
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
                         player1_wins++;
                         display('player1');
                     }
                 }
-                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1 && current_check_counter == 0) {
                     current_check_object = temp_check_array[i];
+                    current_check_counter2++;
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
                         player1_wins++;
@@ -333,18 +337,23 @@ function check_win(object) {
 
             var first_check_object = temp_check_array[0];
             var current_check_object = temp_check_array[0];
+            var current_check_counter = 0;
+            var current_check_counter2 = 0;
+
 
             for (i = 1; i < temp_check_array.length; i++) {
-                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1 && current_check_counter2 == 0) {
                     current_check_object = temp_check_array[i];
+                    current_check_counter++;
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
                         player2_wins++;
                         display('player2');
                     }
                 }
-                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1 && current_check_counter ==0) {
                     current_check_object = temp_check_array[i];
+                    current_check_counter2++;
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
                         player2_wins++;
@@ -371,6 +380,24 @@ function check_draw() {
     }
 }
 
+function create_modal_options(second)  {
+    if (!second) {
+        for (i = 6; i <= 20; i++) {
+            var text = i + " x " + i;
+            var option = $('<option>').val(i).text(text);
+            $('#sel1').append(option);
+        }
+    }
+
+    else {
+        for (i = 3; i <= 20; i++) {
+            var text = i + " x " + i;
+            var option = $('<option>').val(i).text(text);
+        }
+    }
+
+}
+
 function game_board() {
     //dynamically creates board according to cell_count
     $('.start-game-button').hide();
@@ -380,6 +407,8 @@ function game_board() {
     else {
         cell_count = parseInt($('#sel1 option:selected').val());
     }
+
+    cell_win_count = parseInt($('#sel2 option:selected').val());
 
 
     for (i=0; i<cell_count; i++) { //row count
@@ -435,10 +464,11 @@ function display(player) {
 }
 
 $(document).ready(function(){
-
+    create_modal_options();
     $('.close-modal').click(function(){
         game_board();
     });
+    $('#sel1').change(create_modal_options);
     $('.x-wins').hide();
     $('.o-wins').hide();
 });
