@@ -9,19 +9,19 @@ var cell_win_count = 3;
 var win = false;
 var player1_wins = 0;
 var player2_wins = 0;
+var reset_timer = null;
+
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
-
     self = $(this);
     console.log(self);
 
     if(play_count % 2 == 1){
-       // var x = 'x';
+        // var x = 'x';
         self.find('.x').show();
-      //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
-      //  $(x).appendTo('<div>');
-
+        //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
+        //  $(x).appendTo('<div>');
 
         /////creating object of player's move
         var column = null
@@ -57,11 +57,11 @@ function make_move() {
         play_count++;
     }
     else{
-       // var o = 'o';
-        self.find('.o').show();
-       // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
-      //  $(o).appendTo('<div>');
 
+        // var o = 'o';
+        self.find('.o').show();
+        // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
+        //  $(o).appendTo('<div>');
         /////creating object of player's move
         var column = null
         var row = null;
@@ -99,7 +99,6 @@ function make_move() {
 
 function check_win(object) {
     //loop through array to compare win
-    
     if (object.value == 'player1') {
         var temp_check_array = [];
 
@@ -110,7 +109,6 @@ function check_win(object) {
                 temp_check_array.push(current_object);
             }
         }
-
         if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
             temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
@@ -129,7 +127,6 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
-
                 var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
                 if (next_object.row == current_check_object.row + 1) {
                     current_check_object = temp_check_array[i];
@@ -146,7 +143,6 @@ function check_win(object) {
 
             }
         }
-        
         //check row win
         if (!win) {
 
@@ -177,7 +173,6 @@ function check_win(object) {
                 var current_check_object = temp_check_array[0];
 
                 for (i = 1; i < temp_check_array.length; i++) {
-
                     var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
                     if (next_object.column == current_check_object.column + 1) {
                         current_check_object = temp_check_array[i];
@@ -216,7 +211,6 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
-
                 if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
@@ -235,7 +229,6 @@ function check_win(object) {
                     first_check_object = temp_check_array[i];
                 }
 
-
             }
         }
 
@@ -252,7 +245,6 @@ function check_win(object) {
                 temp_check_array.push(current_object);
             }
         }
-
         if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
             temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
@@ -271,7 +263,6 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
-
                 var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
                 if (next_object.row == current_check_object.row + 1) {
                     current_check_object = temp_check_array[i];
@@ -300,7 +291,6 @@ function check_win(object) {
                     temp_check_array.push(current_object);
                 }
             }
-
             if (temp_check_array.length >= cell_win_count) {       //checking if the x's are consecutive in that column
 
                 temp_check_array.sort(function compare(a, b) { //sorting array from least number to greatest number of column
@@ -319,7 +309,6 @@ function check_win(object) {
                 var current_check_object = temp_check_array[0];
 
                 for (i = 1; i < temp_check_array.length; i++) {
-
                     var next_object = temp_check_array[temp_check_array.indexOf(current_check_object) + 1];
                     if (next_object.column == current_check_object.column + 1) {
                         current_check_object = temp_check_array[i];
@@ -358,7 +347,6 @@ function check_win(object) {
             var current_check_object = temp_check_array[0];
 
             for (i = 1; i < temp_check_array.length; i++) {
-
                 if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
@@ -377,57 +365,97 @@ function check_win(object) {
                     first_check_object = temp_check_array[i];
                 }
             }
-
         }
 
     }
 }
 
 function check_draw() {
-    //see if gameboard is full and no win is present
+    function check_draw() {
+        if (play_count == cell_count * cell_count) {
+            alert('Cat\'s Game!');
+            reset_timer = setTimeout(function () {
+                reset();
+            }, 5000);
+        }
+    }
 }
 
 function game_board() {
     //dynamically creates board according to cell_count
-    
-    
-}
-
-function reset() {
-    //clear all the objects in arrays, clear gameboard
-    function reset() {
-        player_1 = [];
-        player_2 = [];
-        play_count = 1;
-        cell_count = 3;
-        player1_wins = 0;
-        player2_wins = 0;
-        $('.x, .o').hide(); // remove or toggle class??
-
-    }
-
-}
-function display() {
-    //shows stats, and highlights which player's turn it is
-    if(win)
-    { //player 1 wins needs from check win
-        wins1++;
-        $('.').text(' ' + player1_wins);
-    }
-    else{
-        wins2++;
-        $('.').text(' ' + player2_wins);
+    $('.start-game-button').hide();
+    if ($("input[name='optradio']:checked").val()) {
+        cell_count = parseInt($("input[name='optradio']:checked").val());
     }
 
 
-
-}
-
-$(document).ready(function(){
-    $('.img-responsive').hide();
+    for (i=0; i<cell_count; i++) { //row count
+        for (j=0; j<cell_count; j++) { //column count
+            var column_class = "column_"+j;
+            var row_class = "row_"+i;
+            var gamebox_size = (100/cell_count) + '%';
+            //  var image_x = $('<img>').addClass('x').attr('src', 'images/x.png');
+            // var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
+            var new_div = $('<div>', {
+                class : ("cells "+ column_class + " " + row_class),
+                width: gamebox_size,
+                height: gamebox_size
+            });
+            var image_x = $('<img>').addClass('x').attr('src', 'images/x.png');
+            var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
+            new_div.append(image_x, image_o);
+            $('.game-area').append(new_div);
+        }
+    }
+    $('.x').hide();
+    $('.o').hide();
     $('.cells').click(make_move);
 
     $('.reset').click(function(){
         reset();
-    })
-})
+    });
+
+}
+
+function reset() {
+    //clear all the objects in arrays, clear gameboard
+    player1_array = [];
+    player2_array = [];
+    play_count = 1;
+    cell_count = 3;
+    player1_wins = 0;
+    player2_wins = 0;
+    $('.x').hide(); // remove or toggle class??
+    $('.o').hide();
+
+}
+// function display() {
+//     //shows stats, and highlights which player's turn it is
+//     if(win)
+//     { //player 1 wins needs from check win
+//         wins1++;
+//         $('.x').text(' ' + player1_wins);
+//     }
+//     else{
+//         wins2++;
+//         $('.o').text(' ' + player2_wins);
+//     }
+//
+//
+//
+// }
+
+$(document).ready(function(){
+
+    $('.close-modal').click(function(){
+        game_board();
+    });
+    $('.x-wins').hide();
+    $('.o-wins').hide();
+});
+
+// //FIGURE OUT HOW TO INCORPORATE THIS INTO CODE
+// $('.x-wins .o-wins').click(function() {
+//     $('.x-wins').fadeIn('slow');
+//     $('.o-wins').fadeIn('slow');
+// });
