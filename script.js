@@ -19,7 +19,6 @@ function make_move() {
     console.log(self);
 
     if(play_count % 2 == 1){
-<<<<<<< HEAD
         // var x = 'x';
         self.find('.x').show();
         //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
