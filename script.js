@@ -362,12 +362,12 @@ function check_win(object) {
 
 function check_draw() {
     function check_draw() {
-        if (play_count == cell_count * cell_count) {
-            alert('Cat\'s Game!');
-            reset_timer = setTimeout(function () {
-                reset();
-            }, 5000);
-        }
+        // if (play_count == cell_count * cell_count) {
+        //     alert('Cat\'s Game!');
+        //     reset_timer = setTimeout(function () {
+        //         reset();
+        //     }, 5000);
+        // }
     }
 }
 
@@ -418,6 +418,8 @@ function reset() {
     $('.x').hide(); // remove or toggle class??
     $('.o').hide();
     win = false;
+    $('.x-wins').hide();
+    $('.o-wins').hide();
 
 }
 function display(player) {
