@@ -390,9 +390,10 @@ function create_modal_options(second)  {
     }
 
     else {
-        for (i = 3; i <= 20; i++) {
+            for (i = 7; i <= cell_count; i++) {
             var text = i + " x " + i;
-            var option = $('<option>').val(i).text(text);
+            var option = $('<option>').val(i).text(i);
+            $('#sel2').append(option);
         }
     }
 
@@ -468,7 +469,10 @@ $(document).ready(function(){
     $('.close-modal').click(function(){
         game_board();
     });
-    $('#sel1').change(create_modal_options);
+    $('#sel1').change(function() {
+        cell_count = parseInt($('#sel1 option:selected').val());
+        create_modal_options('second');
+    });
     $('.x-wins').hide();
     $('.o-wins').hide();
 });
