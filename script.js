@@ -443,7 +443,6 @@ function reset() {
     player1_array = [];
     player2_array = [];
     play_count = 1;
-    cell_count = 3;
     $('.x').fadeOut('slow'); // remove or toggle class??
     $('.o').fadeOut('slow');
     $('.x-wins').fadeOut('slow');
