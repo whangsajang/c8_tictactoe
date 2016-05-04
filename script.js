@@ -77,6 +77,7 @@ function make_move() {
             check_draw();
             play_count++;
         }
+    $('.player').toggleClass('player-turn')
     }
 }
 
@@ -362,10 +363,7 @@ function check_win(object) {
 
 function check_draw() {
         if (play_count == cell_count * cell_count) {
-            alert('Cat\'s Game!');
-            reset_timer = setTimeout(function () {
-                reset();
-            }, 5000);
+            $('.cats-game').fadeIn('slow');
         }
 }
 
@@ -402,7 +400,6 @@ function game_board() {
     $('.reset').click(function(){
         reset();
     });
-
 }
 
 function reset() {
@@ -413,13 +410,17 @@ function reset() {
     cell_count = 3;
     player1_wins = 0;
     player2_wins = 0;
-    $('.x').hide(); // remove or toggle class??
-    $('.o').hide();
+    $('.x').fadeOut('slow'); // remove or toggle class??
+    $('.o').fadeOut('slow');
+    $('.x-wins').fadeOut('slow');
+    $('.o-wins').fadeOut('slow');
+    $('.cats-game').fadeOut('slow');
     win = false;
-
 }
+
 function display(player) {
     //shows stats, and highlights which player's turn it is
+    
     if(player == 'player1') {
         $('.x-wins').fadeIn('slow');
     }
@@ -429,12 +430,12 @@ function display(player) {
 }
 
 $(document).ready(function(){
-
     $('.close-modal').click(function(){
         game_board();
     });
     $('.x-wins').hide();
     $('.o-wins').hide();
+    $('.cats-game').hide();
 });
 
 
