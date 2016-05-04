@@ -447,8 +447,8 @@ function reset() {
         cell_count = 3;
         player1_wins = 0;
         player2_wins = 0;
-        $('.x, .o').hide(); // remove or toggle class??
-
+        $('.x').hide(); // remove or toggle class??
+        $('.o').hide();
     }
 
 }
