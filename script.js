@@ -14,7 +14,6 @@ var reset_timer = null;
 
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
-
     self = $(this);
     console.log(self);
 
@@ -420,16 +419,14 @@ function game_board() {
 
 function reset() {
     //clear all the objects in arrays, clear gameboard
-    function reset() {
-        player_1 = [];
-        player_2 = [];
-        play_count = 1;
-        cell_count = 3;
-        player1_wins = 0;
-        player2_wins = 0;
-        $('.x').hide(); // remove or toggle class??
-        $('.o').hide();
-    }
+    player1_array = [];
+    player2_array = [];
+    play_count = 1;
+    cell_count = 3;
+    player1_wins = 0;
+    player2_wins = 0;
+    $('.x').hide(); // remove or toggle class??
+    $('.o').hide();
 
 }
 // function display() {
@@ -450,8 +447,15 @@ function reset() {
 
 $(document).ready(function(){
 
-
     $('.close-modal').click(function(){
         game_board();
     });
+    $('.x-wins').hide();
+    $('.o-wins').hide();
 });
+
+// //FIGURE OUT HOW TO INCORPORATE THIS INTO CODE
+// $('.x-wins .o-wins').click(function() {
+//     $('.x-wins').fadeIn('slow');
+//     $('.o-wins').fadeIn('slow');
+// });

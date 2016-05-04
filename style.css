@@ -1,13 +1,18 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: "Courier New";
+    font-family: "American Typewriter";
     text-align: center;
     box-sizing: border-box;
 }
+body {
+    background-image: url('images/background.jpg');
+}
 .title {
-    font-size: 8vh;
+    font-size: 10vh;
     font-weight: bold;
+    text-shadow: 4px 4px 4px black;
+    color: white;
 }
 .start-game-modal {
     top: 25vh;
@@ -17,9 +22,16 @@
     font-weight: bold;
     font-size: 5vh;
 }
+.modal-text {
+    font-size: 1.5em;
+}
 .game-container {
-    margin-top: 3vh;
+    margin-top: 0vh;
     height: 80vh;
+}
+.game-area-parent {
+    width: 100%;
+    height: 100%;
 }
 .game-area {
     width: 100%;
@@ -32,20 +44,21 @@
 }
 .stat-container {
     height: 50vh;
-    margin-top: 30vh;
-    border: black 3px solid;
-    background-color:rgba(255, 255, 0, 0.5);
-    box-shadow: 10px 10px 10px grey;
+    margin: 15vh 0 0 3vw;
+    background-color:rgba(0, 0, 0, 0.25);
+    box-shadow: 15px 15px 15px grey;
+    border-radius: 2%;
 }
 .cells {
-    border: solid 3px black;
     height: 25vh;
-    background-color:rgba(255, 255, 0, 0.5);
-    box-shadow: 10px 10px 10px grey;
+    background-color:rgba(0, 0, 0, 0.1);
+    box-shadow: 15px 15px 15px grey;
     display: flex;
+    border-radius: 3%;
     align-items: center;
     justify-items: center;
-
+    transition-duration: 1.25s;
+    transform-style: preserve-3d;
 }
 .stat-text {
     margin-top: 0.8vh;
@@ -58,15 +71,44 @@
     padding: 1.5vh;
 }
 .reset {
-    margin-top: 5vh;
+    margin-top: 8vh;
     background-color: darkred;
+    border-radius: 10%;
     color: white;
     padding: 0.5vh;
     font-size: 3vh;
 }
-.x, .o {
+.x {
     position: absolute;
-    height: 100px;
-    width: 100px;
-    /*// margin: 3vh;*/
+    margin-top: 8%;
+    margin-left: 15%;
+    height: 75%;
+    width: 75%;
+    /*transform: rotate3D(0,1,0, 180deg);*/
+}
+.o {
+    position: absolute;
+    margin-top: 9%;
+    margin-left: 13%;
+    height: 75%;
+    width: 75%;
+    /*transform: rotate3D(0,1,0, 180deg);*/
+}
+.x-wins, .o-wins {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 750px;
+    height: 250px;
+    top: 25%;
+    left: 15%;
+    font-weight: bold;
+    font-size: 12vh;
+    background-color:rgba(255, 255, 255, 0.25);
+    box-shadow: 15px 15px 15px grey;
+}
+.x-wins-img, .o-wins-img {
+    width: 250px;
+    height: 250px;
 }
