@@ -99,16 +99,24 @@ body {
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 750px;
-    height: 250px;
-    top: 25%;
-    left: 15%;
+    width: 45vw;
+    height: 22vh;
+    top: 28%;
+    left: 16%;
     font-weight: bold;
-    font-size: 12vh;
+    font-size: 10vh;
     background-color:rgba(255, 255, 255, 0.25);
     box-shadow: 15px 15px 15px grey;
 }
 .x-wins-img, .o-wins-img {
-    width: 250px;
-    height: 250px;
+    width: 15vw;
+    height: 20vh;
+}
+.modal.fade{
+    -webkit-transition: opacity .2s linear, none;
+    -moz-transition: opacity .2s linear, none;
+    -ms-transition: opacity .2s linear, none;
+    -o-transition: opacity .2s linear, none;
+    transition: opacity .2s linear, none;
+    top: 20vh;
 }

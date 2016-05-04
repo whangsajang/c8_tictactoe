@@ -350,14 +350,14 @@ function check_win(object) {
                 if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
-                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                         display('Player 1 Wins!');
                     }
                 }
                 else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
-                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                         display('Player 1 Wins!');
                     }
                 }
@@ -371,14 +371,12 @@ function check_win(object) {
 }
 
 function check_draw() {
-    function check_draw() {
         if (play_count == cell_count * cell_count) {
             alert('Cat\'s Game!');
             reset_timer = setTimeout(function () {
                 reset();
             }, 5000);
         }
-    }
 }
 
 function game_board() {
@@ -429,21 +427,19 @@ function reset() {
     $('.o').hide();
 
 }
-// function display() {
-//     //shows stats, and highlights which player's turn it is
-//     if(win)
-//     { //player 1 wins needs from check win
-//         wins1++;
-//         $('.x').text(' ' + player1_wins);
-//     }
-//     else{
-//         wins2++;
-//         $('.o').text(' ' + player2_wins);
-//     }
-//
-//
-//
-// }
+function display() {
+    //shows stats, and highlights which player's turn it is
+    if(win)
+    { //player 1 wins needs from check win
+        wins1++;
+        $('.x').text(' ' + player1_wins);
+    }
+    else{
+        wins2++;
+        $('.o').text(' ' + player2_wins);
+    }
+
+}
 
 $(document).ready(function(){
 
