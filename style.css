@@ -60,6 +60,14 @@ body {
     transition-duration: 1.25s;
     transform-style: preserve-3d;
 }
+.cells:hover {
+    box-shadow:
+            1px 1px #ffffff,
+            2px 2px #ffffff,
+            3px 3px #ffffff;
+    -webkit-transform: translateX(-1px);
+    transform: translateX(-1px);
+}
 .stat-text {
     margin-top: 0.8vh;
     font-size: 3vh;
