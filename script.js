@@ -26,24 +26,15 @@ function make_move() {
         /////creating object of player's move
         var column = null
         var row = null;
-        if (self.hasClass('column_0')) {
-            column = 0;
-        }
-        else if (self.hasClass('column_1')) {
-            column = 1;
-        }
-        else if (self.hasClass('column_2')) {
-            column = 2;
-        }
-
-        if (self.hasClass('row_0')) {
-            row = 0;
-        }
-        else if (self.hasClass('row_1')) {
-            row = 1;
-        }
-        else if (self.hasClass('row_2')) {
-            row = 2;
+        for (i = 0; i < cell_count; i++) {
+            var current_column = "column_" + i;
+            var current_row = "row_" + i;
+            if (self.hasClass(current_column)) {
+                column = i;
+            }
+            if (self.hasClass(current_row)) {
+                row = i;
+            }
         }
 
         var player_move = {
@@ -65,24 +56,15 @@ function make_move() {
         /////creating object of player's move
         var column = null
         var row = null;
-        if (self.hasClass('column_0')) {
-            column = 0;
-        }
-        else if (self.hasClass('column_1')) {
-            column = 1;
-        }
-        else if (self.hasClass('column_2')) {
-            column = 2;
-        }
-
-        if (self.hasClass('row_0')) {
-            row = 0;
-        }
-        else if (self.hasClass('row_1')) {
-            row = 1;
-        }
-        else if (self.hasClass('row_2')) {
-            row = 2;
+        for (i = 0; i < cell_count; i++) {
+            var current_column = "column_" + i;
+            var current_row = "row_" + i;
+            if (self.hasClass(current_column)) {
+                column = i;
+            }
+            if (self.hasClass(current_row)) {
+                row = i;
+            }
         }
 
         var player_move = {
@@ -273,8 +255,8 @@ function check_win(object) {
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                         win = true;
-                        display('Player 1 Wins!');
-
+                        // display('Player 1 Wins!');
+                        console.log('Player 2 wins');
                     }
                 }
                 else {
@@ -319,8 +301,8 @@ function check_win(object) {
 
                         if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                             win = true;
-                            display('Player 1 Wins!');
-
+                            // display('Player 1 Wins!');
+                            console.log('Player 2 wins');
                         }
                     }
                     else {
@@ -355,14 +337,16 @@ function check_win(object) {
                     current_check_object = temp_check_array[i];
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
-                        display('Player 1 Wins!');
+                        // display('Player 1 Wins!');
+                        console.log('Player 2 wins');
                     }
                 }
                 else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
-                        display('Player 1 Wins!');
+                        // display('Player 1 Wins!');
+                        console.log('Player 2 wins');
                     }
                 }
                 else {
@@ -431,6 +415,7 @@ function reset() {
     player2_wins = 0;
     $('.x').hide(); // remove or toggle class??
     $('.o').hide();
+    win = false;
 
 }
 // function display() {
