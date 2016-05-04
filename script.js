@@ -15,85 +15,68 @@ var reset_timer = null;
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
     self = $(this);
-    console.log(self);
 
-    if(play_count % 2 == 1){
-        // var x = 'x';
-        self.find('.x').show();
-        //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
-        //  $(x).appendTo('<div>');
+    if (self.find('.x').css('display') == 'none' && self.find('.o').css('display') == 'none') {
+        if (play_count % 2 == 1) {
+            // var x = 'x';
+            self.find('.x').show();
+            //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
+            //  $(x).appendTo('<div>');
 
-        /////creating object of player's move
-        var column = null
-        var row = null;
-        if (self.hasClass('column_0')) {
-            column = 0;
-        }
-        else if (self.hasClass('column_1')) {
-            column = 1;
-        }
-        else if (self.hasClass('column_2')) {
-            column = 2;
-        }
+            /////creating object of player's move
+            var column = null
+            var row = null;
+            for (i = 0; i < cell_count; i++) {
+                var current_column = "column_" + i;
+                var current_row = "row_" + i;
+                if (self.hasClass(current_column)) {
+                    column = i;
+                }
+                if (self.hasClass(current_row)) {
+                    row = i;
+                }
+            }
 
-        if (self.hasClass('row_0')) {
-            row = 0;
+            var player_move = {
+                column: column,
+                row: row,
+                value: 'player1'
+            }
+            player1_array.push(player_move);
+            check_win(player_move);
+            check_draw();
+            play_count++;
         }
-        else if (self.hasClass('row_1')) {
-            row = 1;
-        }
-        else if (self.hasClass('row_2')) {
-            row = 2;
-        }
+        else {
 
-        var player_move = {
-            column: column,
-            row: row,
-            value: 'player1'
-        }
-        player1_array.push(player_move);
-        check_win(player_move);
-        check_draw();
-        play_count++;
-    }
-    else{
+            // var o = 'o';
+            self.find('.o').show();
+            // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
+            //  $(o).appendTo('<div>');
+            /////creating object of player's move
+            var column = null
+            var row = null;
+            for (i = 0; i < cell_count; i++) {
+                var current_column = "column_" + i;
+                var current_row = "row_" + i;
+                if (self.hasClass(current_column)) {
+                    column = i;
+                }
+                if (self.hasClass(current_row)) {
+                    row = i;
+                }
+            }
 
-        // var o = 'o';
-        self.find('.o').show();
-        // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
-        //  $(o).appendTo('<div>');
-        /////creating object of player's move
-        var column = null
-        var row = null;
-        if (self.hasClass('column_0')) {
-            column = 0;
+            var player_move = {
+                column: column,
+                row: row,
+                value: 'player2'
+            }
+            player2_array.push(player_move);
+            check_win(player_move);
+            check_draw();
+            play_count++;
         }
-        else if (self.hasClass('column_1')) {
-            column = 1;
-        }
-        else if (self.hasClass('column_2')) {
-            column = 2;
-        }
-
-        if (self.hasClass('row_0')) {
-            row = 0;
-        }
-        else if (self.hasClass('row_1')) {
-            row = 1;
-        }
-        else if (self.hasClass('row_2')) {
-            row = 2;
-        }
-
-        var player_move = {
-            column: column,
-            row: row,
-            value: 'player2'
-        }
-        player2_array.push(player_move);
-        check_win(player_move);
-        check_draw();
-        play_count++;
     }
 }
 
@@ -133,7 +116,9 @@ function check_win(object) {
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                         win = true;
-                        display('Player 1 Wins!');
+                        //display('Player 1 Wins!');
+                        player1_wins++;
+                        display('player1');
 
                     }
                 }
@@ -179,7 +164,8 @@ function check_win(object) {
 
                         if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                             win = true;
-                            display('Player 1 Wins!');
+                            player1_wins++;
+                            display('player1');
 
                         }
                     }
@@ -215,14 +201,16 @@ function check_win(object) {
                     current_check_object = temp_check_array[i];
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
-                        display('Player 1 Wins!');
+                        player1_wins++;
+                        display('player1');
                     }
                 }
                 else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
-                        display('Player 1 Wins!');
+                        player1_wins++;
+                        display('player1');
                     }
                 }
                 else {
@@ -269,8 +257,8 @@ function check_win(object) {
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                         win = true;
-                        display('Player 1 Wins!');
-
+                        player2_wins++;
+                        display('player2');
                     }
                 }
                 else {
@@ -315,8 +303,8 @@ function check_win(object) {
 
                         if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                             win = true;
-                            display('Player 1 Wins!');
-
+                            player2_wins++;
+                            display('player2');
                         }
                     }
                     else {
@@ -350,15 +338,17 @@ function check_win(object) {
                 if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
-                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
-                        display('Player 1 Wins!');
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        player2_wins++;
+                        display('player2');
                     }
                 }
                 else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
-                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
-                        display('Player 1 Wins!');
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        player2_wins++;
+                        display('player2');
                     }
                 }
                 else {
@@ -425,20 +415,17 @@ function reset() {
     player2_wins = 0;
     $('.x').hide(); // remove or toggle class??
     $('.o').hide();
+    win = false;
 
 }
-function display() {
+function display(player) {
     //shows stats, and highlights which player's turn it is
-    if(win)
-    { //player 1 wins needs from check win
-        wins1++;
-        $('.x').text(' ' + player1_wins);
+    if(player == 'player1') {
+        $('.x-wins').fadeIn('slow');
     }
-    else{
-        wins2++;
-        $('.o').text(' ' + player2_wins);
+    else if(player == 'player2') {
+        $('.o-wins').fadeIn('slow');
     }
-
 }
 
 $(document).ready(function(){
@@ -450,8 +437,4 @@ $(document).ready(function(){
     $('.o-wins').hide();
 });
 
-// //FIGURE OUT HOW TO INCORPORATE THIS INTO CODE
-// $('.x-wins .o-wins').click(function() {
-//     $('.x-wins').fadeIn('slow');
-//     $('.o-wins').fadeIn('slow');
-// });
+
