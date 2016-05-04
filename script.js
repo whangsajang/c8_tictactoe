@@ -136,7 +136,8 @@ function check_win(object) {
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                         win = true;
-                        display('Player 1 Wins!');
+                        //display('Player 1 Wins!');
+                        console.log('Player 1 Wins');
 
                     }
                 }
@@ -184,7 +185,8 @@ function check_win(object) {
 
                         if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count - 1)) {
                             win = true;
-                            display('Player 1 Wins!');
+                            //display('Player 1 Wins!');
+                            console.log('Player 1 Wins');
 
                         }
                     }
@@ -221,14 +223,16 @@ function check_win(object) {
                     current_check_object = temp_check_array[i];
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
-                        display('Player 1 Wins!');
+                       // display('Player 1 Wins!');
+                        console.log('Player 1 Wins');
                     }
                 }
                 else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
                     current_check_object = temp_check_array[i];
 
                     if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
-                        display('Player 1 Wins!');
+                       // display('Player 1 Wins!');
+                        console.log('Player 1 Wins');
                     }
                 }
                 else {
