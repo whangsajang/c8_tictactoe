@@ -119,6 +119,7 @@ function check_win(object) {
                         win = true;
                         //display('Player 1 Wins!');
                         player1_wins++;
+
                         display('player1');
 
                     }
@@ -423,9 +424,11 @@ function display(player) {
     
     if(player == 'player1') {
         $('.x-wins').fadeIn('slow');
+        $('.p1-score .value').text(player1_wins);
     }
     else if(player == 'player2') {
         $('.o-wins').fadeIn('slow');
+        $('.p1-score .value').text(player2_wins);
     }
 }
 
