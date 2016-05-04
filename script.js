@@ -409,8 +409,6 @@ function reset() {
     player2_array = [];
     play_count = 1;
     cell_count = 3;
-    player1_wins = 0;
-    player2_wins = 0;
     $('.x').fadeOut('slow'); // remove or toggle class??
     $('.o').fadeOut('slow');
     $('.x-wins').fadeOut('slow');
@@ -428,7 +426,7 @@ function display(player) {
     }
     else if(player == 'player2') {
         $('.o-wins').fadeIn('slow');
-        $('.p1-score .value').text(player2_wins);
+        $('.p2-score .value').text(player2_wins);
     }
 }
 
