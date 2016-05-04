@@ -142,7 +142,6 @@ function check_win(object) {
                 }
                 else {
                     first_check_object = temp_check_array[i];
-                    break;
                 }
 
             }
@@ -191,7 +190,6 @@ function check_win(object) {
                     }
                     else {
                         first_check_object = temp_check_array[i];
-                        break;
                     }
 
                 }
@@ -200,7 +198,7 @@ function check_win(object) {
 
         //check diagonals
         if (!win) {
-            temp_check_array = player1_array.splice();
+            temp_check_array = player1_array;
 
             temp_check_array.sort(function compare(a, b) { //sorting player 1 array from least number to greatest number of column
                 if (a.column > b.column) {
@@ -219,26 +217,24 @@ function check_win(object) {
 
             for (i = 1; i < temp_check_array.length; i++) {
 
-                for (j = 1; j <= cell_win_count; j++) {
-                    if (temp_check_array[i].row == first_check_object.row + j && temp_check_array[i].column == first_check_object.column + j) {
-                        current_check_object = temp_check_array[i];
+                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else if (temp_check_array[i].row == first_check_object.row - j && temp_check_array[i].column == first_check_object.column - j) {
-                        current_check_object = temp_check_array[i];
-
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else {
-                        first_check_object = temp_check_array[i];
-                        break;
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        display('Player 1 Wins!');
                     }
                 }
+                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
+
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        display('Player 1 Wins!');
+                    }
+                }
+                else {
+                    first_check_object = temp_check_array[i];
+                }
+
 
             }
         }
@@ -288,7 +284,6 @@ function check_win(object) {
                 }
                 else {
                     first_check_object = temp_check_array[i];
-                    break;
                 }
 
             }
@@ -337,7 +332,6 @@ function check_win(object) {
                     }
                     else {
                         first_check_object = temp_check_array[i];
-                        break;
                     }
 
                 }
@@ -346,7 +340,7 @@ function check_win(object) {
 
         //check diagonals
         if (!win) {
-            temp_check_array = player2_array.splice();
+            temp_check_array = player2_array;
 
             temp_check_array.sort(function compare(a, b) { //sorting player 2 array from least number to greatest number of column
                 if (a.column > b.column) {
@@ -365,28 +359,25 @@ function check_win(object) {
 
             for (i = 1; i < temp_check_array.length; i++) {
 
-                for (j = 1; j <= cell_win_count; j++) {
-                    if (temp_check_array[i].row == first_check_object.row + j && temp_check_array[i].column == first_check_object.column + j) {
-                        current_check_object = temp_check_array[i];
+                if (temp_check_array[i].row == current_check_object.row + 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else if (temp_check_array[i].row == first_check_object.row - j && temp_check_array[i].column == first_check_object.column - j) {
-                        current_check_object = temp_check_array[i];
-
-                        if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + cell_win_count) {
-                            display('Player 1 Wins!');
-                        }
-                    }
-                    else {
-                        first_check_object = temp_check_array[i];
-                        break;
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        display('Player 1 Wins!');
                     }
                 }
+                else if (temp_check_array[i].row == current_check_object.row - 1 && temp_check_array[i].column == current_check_object.column + 1) {
+                    current_check_object = temp_check_array[i];
 
+                    if (temp_check_array.indexOf(current_check_object) == temp_check_array.indexOf(first_check_object) + (cell_win_count-1)) {
+                        display('Player 1 Wins!');
+                    }
+                }
+                else {
+                    first_check_object = temp_check_array[i];
+                }
             }
+
         }
 
     }
