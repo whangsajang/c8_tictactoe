@@ -13,18 +13,12 @@
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
-
+<p class="title">TIC-TAC-TOE</p>
 <div class='game-container col-md-offset-1 col-md-8 col-s-offset-1 col-s-8 col-xs-offset-1 col-xs-8 '>
-    <div class="row col-md-12 col-s-12 col-xs-12">
-        <p class="title">TIC-TAC-TOE</p>
-    </div>
-
         <div class="start-game-modal col-md-12">
             <!-- Trigger the modal with a button -->
             <button type="button" class="btn btn-info btn-lg start-game-button" data-toggle="modal"
-                    data-target="#myModal">START
-                GAME</button>
-
+                    data-target="#myModal">START GAME</button>
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
@@ -38,9 +32,9 @@
                         <div class="modal-body">
                             <p>Pick a Game Type!</p>
                             <div class="radio">
-                                <label><input type="radio" name="optradio">3 x 3</label><br>
-                                <label><input type="radio" name="optradio">4 x 4</label><br>
-                                <label><input type="radio" name="optradio">5 x 5</label><br><br>
+                                <label><input type="radio" name="optradio" value="3">3 x 3</label><br>
+                                <label><input type="radio" name="optradio" value="4">4 x 4</label><br>
+                                <label><input type="radio" name="optradio" value="5">5 x 5</label><br><br>
                                 <p>Or Play a Custom Game!</p><br>
                                 <div class="form-group">
                                     <label for="sel1">Select Custom Grid Size</label>
@@ -85,7 +79,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Confirm
+                            </button>
                         </div>
                     </div>
 
@@ -93,6 +88,7 @@
             </div>
 
         </div>
+    <div class="game-area"></div>
     <!--<div class="row col-md-12">-->
         <!--<div class="cells column_0 row_0 col-md-4 col-s-4 col-xs-4">-->
             <!--<img class="img-responsive x" src="images/x.png">-->

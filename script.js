@@ -403,12 +403,41 @@ function check_draw() {
     }
 }
 
-// function game_board() {
-//     //dynamically creates board according to cell_count
-//     $(".game-container").append("<div></div>");
-//
-// }
+function game_board() {
+    //dynamically creates board according to cell_count
+    $('.start-game-button').hide();
+    if ($("input[name='optradio']:checked").val()) {
+        cell_count = parseInt($("input[name='optradio']:checked").val());
+        }
 
+
+    for (i=0; i<cell_count; i++) { //row count
+        for (j=0; j<cell_count; j++) { //column count
+            var column_class = "column_"+j;
+            var row_class = "row_"+i;
+            var gamebox_size = (100/cell_count) + '%';
+          //  var image_x = $('<img>').addClass('x').attr('src', 'images/x.png');
+           // var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
+            var new_div = $('<div>', {
+                class : ("cells "+ column_class + " " + row_class),
+                width: gamebox_size,
+                height: gamebox_size
+            });
+            var image_x = $('<img>').addClass('x').attr('src', 'images/x.png');
+            var image_o = $('<img>').addClass('o').attr('src', 'images/o.png');
+            new_div.append(image_x, image_o);
+            $('.game-area').append(new_div);
+        }
+    }
+    $('.x').hide();
+    $('.o').hide();
+    $('.cells').click(make_move);
+
+    $('.reset').click(function(){
+        reset();
+    });
+
+}
 function reset() {
     //clear all the objects in arrays, clear gameboard
     function reset() {
@@ -423,27 +452,26 @@ function reset() {
     }
 
 }
-function display() {
-    //shows stats, and highlights which player's turn it is
-    if(win)
-    { //player 1 wins needs from check win
-        wins1++;
-        $('.').text(' ' + player1_wins);
-    }
-    else{
-        wins2++;
-        $('.').text(' ' + player2_wins);
-    }
-
-
-
-}
+// function display() {
+//     //shows stats, and highlights which player's turn it is
+//     if(win)
+//     { //player 1 wins needs from check win
+//         wins1++;
+//         $('.x').text(' ' + player1_wins);
+//     }
+//     else{
+//         wins2++;
+//         $('.o').text(' ' + player2_wins);
+//     }
+//
+//
+//
+// }
 
 $(document).ready(function(){
-    $('.img-responsive').hide();
-    $('.cells').click(make_move);
+    
 
-    $('.reset').click(function(){
-        reset();
+    $('.close-modal').click(function(){
+        game_board();
     });
 });
