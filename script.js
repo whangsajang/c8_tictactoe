@@ -15,67 +15,68 @@ var reset_timer = null;
 function make_move() {
     //main function executed on click. add image to block, call check_win, call check_draw, increase play_count
     self = $(this);
-    console.log(self);
 
-    if(play_count % 2 == 1){
-        // var x = 'x';
-        self.find('.x').show();
-        //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
-        //  $(x).appendTo('<div>');
+    if (self.find('.x').css('display') == 'none' && self.find('.o').css('display') == 'none') {
+        if (play_count % 2 == 1) {
+            // var x = 'x';
+            self.find('.x').show();
+            //  var x = $('<div>').addClass('img-responsive').html('<img src="images/x.png">');
+            //  $(x).appendTo('<div>');
 
-        /////creating object of player's move
-        var column = null
-        var row = null;
-        for (i = 0; i < cell_count; i++) {
-            var current_column = "column_" + i;
-            var current_row = "row_" + i;
-            if (self.hasClass(current_column)) {
-                column = i;
+            /////creating object of player's move
+            var column = null
+            var row = null;
+            for (i = 0; i < cell_count; i++) {
+                var current_column = "column_" + i;
+                var current_row = "row_" + i;
+                if (self.hasClass(current_column)) {
+                    column = i;
+                }
+                if (self.hasClass(current_row)) {
+                    row = i;
+                }
             }
-            if (self.hasClass(current_row)) {
-                row = i;
-            }
-        }
 
-        var player_move = {
-            column: column,
-            row: row,
-            value: 'player1'
-        }
-        player1_array.push(player_move);
-        check_win(player_move);
-        check_draw();
-        play_count++;
-    }
-    else{
-
-        // var o = 'o';
-        self.find('.o').show();
-        // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
-        //  $(o).appendTo('<div>');
-        /////creating object of player's move
-        var column = null
-        var row = null;
-        for (i = 0; i < cell_count; i++) {
-            var current_column = "column_" + i;
-            var current_row = "row_" + i;
-            if (self.hasClass(current_column)) {
-                column = i;
+            var player_move = {
+                column: column,
+                row: row,
+                value: 'player1'
             }
-            if (self.hasClass(current_row)) {
-                row = i;
-            }
+            player1_array.push(player_move);
+            check_win(player_move);
+            check_draw();
+            play_count++;
         }
+        else {
 
-        var player_move = {
-            column: column,
-            row: row,
-            value: 'player2'
+            // var o = 'o';
+            self.find('.o').show();
+            // var o = $('<div>').addClass('img-responsive').html('<img src="images/o.png">'); //addClass
+            //  $(o).appendTo('<div>');
+            /////creating object of player's move
+            var column = null
+            var row = null;
+            for (i = 0; i < cell_count; i++) {
+                var current_column = "column_" + i;
+                var current_row = "row_" + i;
+                if (self.hasClass(current_column)) {
+                    column = i;
+                }
+                if (self.hasClass(current_row)) {
+                    row = i;
+                }
+            }
+
+            var player_move = {
+                column: column,
+                row: row,
+                value: 'player2'
+            }
+            player2_array.push(player_move);
+            check_win(player_move);
+            check_draw();
+            play_count++;
         }
-        player2_array.push(player_move);
-        check_win(player_move);
-        check_draw();
-        play_count++;
     }
 }
 
