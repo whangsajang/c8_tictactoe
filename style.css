@@ -62,7 +62,6 @@ body {
     background-color:rgba(0, 0, 0, 0.1);
     box-shadow: 15px 15px 15px grey;
     display: flex;
-    border-radius: 3%;
     align-items: center;
     justify-items: center;
     transition-duration: 1.25s;
@@ -70,9 +69,9 @@ body {
 }
 .cells:hover {
     box-shadow:
-            1px 1px #ffffff,
-            2px 2px #ffffff,
-            3px 3px #ffffff;
+            1px 1px #dbdbd9,
+            2px 2px #dbdbd9,
+            3px 3px #dbdbd9;
     -webkit-transform: translateX(-1px);
     transform: translateX(-1px);
 }

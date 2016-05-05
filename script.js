@@ -80,9 +80,9 @@ function make_move() {
     }
 }
 
-function set_timer() {
-
-}
+// function set_timer() {
+//
+// }
 
 function check_win(object) {
     //loop through array to compare win
@@ -388,7 +388,6 @@ function create_modal_options(second)  {
             $('#sel1').append(option);
         }
     }
-
     else {
             for (i = 7; i <= cell_count; i++) {
             var text = i + " x " + i;
@@ -432,7 +431,6 @@ function game_board() {
     $('.x').hide();
     $('.o').hide();
     $('.cells').click(make_move);
-
     $('.reset').click(function(){
         reset();
     });
