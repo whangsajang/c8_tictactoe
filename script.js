@@ -377,6 +377,7 @@ function check_win(object) {
 function check_draw() {
     if (play_count == cell_count * cell_count) {
         $('.cats-game').fadeIn('slow');
+        $('#meow').trigger('play');
     }
 }
 
@@ -454,10 +455,12 @@ function display(player) {
     
     if(player == 'player1') {
         $('.x-wins').fadeIn('slow');
+        $('#yay').trigger('play');
         $('.p1-score .value').text(player1_wins);
     }
     else if(player == 'player2') {
         $('.o-wins').fadeIn('slow');
+        $('#yay').trigger('play');
         $('.p2-score .value').text(player2_wins);
     }
 }
