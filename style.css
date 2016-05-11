@@ -98,7 +98,7 @@ body {
     text-decoration: underline;
     text-shadow: 3px 3px 3px black;
 }
-.reset {
+.reset_button {
     margin-top: 8vh;
     background-color: darkred;
     border-radius: 10%;

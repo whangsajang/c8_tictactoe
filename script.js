@@ -431,7 +431,7 @@ function game_board() {
     $('.x').hide();
     $('.o').hide();
     $('.cells').click(make_move);
-    $('.reset').click(function(){
+    $('.reset_button').click(function(){
         reset();
     });
 }
