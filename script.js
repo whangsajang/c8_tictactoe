@@ -80,9 +80,9 @@ function make_move() {
     }
 }
 
-function set_timer() {
-
-}
+// function set_timer() {
+//
+// }
 
 function check_win(object) {
     //loop through array to compare win
@@ -377,6 +377,7 @@ function check_win(object) {
 function check_draw() {
     if (play_count == cell_count * cell_count) {
         $('.cats-game').fadeIn('slow');
+        $('#meow').trigger('play');
     }
 }
 
@@ -388,7 +389,6 @@ function create_modal_options(second)  {
             $('#sel1').append(option);
         }
     }
-
     else {
             for (i = 7; i <= cell_count; i++) {
             var text = i + " x " + i;
@@ -432,8 +432,7 @@ function game_board() {
     $('.x').hide();
     $('.o').hide();
     $('.cells').click(make_move);
-
-    $('.reset').click(function(){
+    $('.reset_button').click(function(){
         reset();
     });
 }
@@ -456,10 +455,12 @@ function display(player) {
     
     if(player == 'player1') {
         $('.x-wins').fadeIn('slow');
+        $('#yay').trigger('play');
         $('.p1-score .value').text(player1_wins);
     }
     else if(player == 'player2') {
         $('.o-wins').fadeIn('slow');
+        $('#yay').trigger('play');
         $('.p2-score .value').text(player2_wins);
     }
 }
